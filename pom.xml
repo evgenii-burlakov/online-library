@@ -13,8 +13,7 @@
     <modules>
         <module>config-server</module>
         <module>service-discovery-server</module>
-        <!--        <module>greeting-microservice</module>-->
-        <!--        <module>names-microservice</module>-->
-        <!--        <module>facade-gateway</module>-->
+        <module>facade-gateway</module>
+        <module>library-microservice</module>
     </modules>
 </project>
