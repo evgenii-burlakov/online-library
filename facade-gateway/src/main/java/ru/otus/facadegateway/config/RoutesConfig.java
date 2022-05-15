@@ -13,7 +13,7 @@ public class RoutesConfig {
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(r -> r.path("/api/**")
-                        .uri("lb://LIBRARY-MICROSERVICE"))
+                        .uri("lb://" + LIBRARY_APPLICATION))
                 .build();
     }
 }
