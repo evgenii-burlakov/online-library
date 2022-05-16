@@ -1,4 +1,4 @@
-package ru.otus.librarymicroservice.domain;
+package ru.otus.usermicroservice.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

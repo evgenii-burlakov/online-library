@@ -15,5 +15,6 @@
         <module>service-discovery-server</module>
         <module>facade-gateway</module>
         <module>library-microservice</module>
+        <module>user-microservice</module>
     </modules>
 </project>
