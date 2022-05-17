@@ -8,12 +8,12 @@ import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-//import ru.otus.facadegateway.service.user.UserDetailsServiceImpl;
+import ru.otus.facadegateway.service.UserDetailsSecurityService;
 
 @EnableWebFluxSecurity
 public class SecurityConfiguration {
-//    @Autowired
-//    private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private UserDetailsSecurityService userDetailsSecurityService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -22,8 +22,7 @@ public class SecurityConfiguration {
 
     @Bean
     public ReactiveUserDetailsService userDetailsService() {
-//        return (username) -> userDetailsService.loadUserByUsername(username);
-        return null;
+        return (username) -> userDetailsSecurityService.loadUserByUsername(username);
     }
 
     @Bean

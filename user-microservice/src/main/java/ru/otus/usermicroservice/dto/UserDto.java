@@ -8,6 +8,7 @@ import ru.otus.usermicroservice.domain.Role;
 import ru.otus.usermicroservice.domain.User;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Builder
 @Getter
@@ -18,12 +19,12 @@ public class UserDto {
     private Long id;
     private String username;
     private String password;
-    private List<Role> roles;
+    private List<RoleDto> roles;
 
     public UserDto() {
     }
 
-    public UserDto(Long id, String username, String password, List<Role> roles) {
+    public UserDto(Long id, String username, String password, List<RoleDto> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -35,7 +36,9 @@ public class UserDto {
                 .id(user.getId())
                 .username(user.getUsername())
                 .password(user.getPassword())
-                .roles(user.getRoles())
+                .roles(user.getRoles().stream()
+                        .map(RoleDto::toDto)
+                        .collect(Collectors.toList()))
                 .build();
     }
 }
