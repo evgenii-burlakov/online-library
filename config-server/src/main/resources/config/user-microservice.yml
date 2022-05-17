@@ -7,21 +7,6 @@ eureka:
     fetch-registry: false
 
 spring:
-  datasource:
-    #    driver-class-name: org.postgresql.Driver
-    #    url: jdbc:postgresql://localhost:5432/db
-    #    username: postgres
-    #    password: postgres
-    url: jdbc:h2:mem:testdb
-  #    initialization-mode: always
-  #    schema: schema.sql
-  #    data: data.sql
-  sql:
-    init:
-      mode: always
-      data-locations: classpath:data.sql
-      schema-locations: classpath:schema.sql
-
   jpa:
     generate-ddl: false
     hibernate:
@@ -43,3 +28,33 @@ management:
       show-details: always
   security:
     enabled: false
+
+logging:
+  level:
+    ROOT: INFO
+
+---
+spring:
+  profiles: inMemory
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:H2Data.sql
+      schema-locations: classpath:H2Schema.sql
+---
+spring:
+  profiles: postgres
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/db
+    username: postgres
+    password: postgres
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:PostgresData.sql
+      schema-locations: classpath:PostgresSchema.sql
