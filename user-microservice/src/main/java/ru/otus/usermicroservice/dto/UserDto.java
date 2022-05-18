@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import ru.otus.usermicroservice.domain.Role;
 import ru.otus.usermicroservice.domain.User;
 
 import java.util.List;

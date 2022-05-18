@@ -3,18 +3,10 @@ package ru.otus.librarymicroservice.controller.book;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.otus.librarymicroservice.domain.Book;
-import ru.otus.librarymicroservice.dto.AuthorDto;
 import ru.otus.librarymicroservice.dto.BookDto;
-import ru.otus.librarymicroservice.dto.CommentDto;
-import ru.otus.librarymicroservice.dto.GenreDto;
-import ru.otus.librarymicroservice.service.author.AuthorService;
 import ru.otus.librarymicroservice.service.book.BookService;
-import ru.otus.librarymicroservice.service.comment.CommentService;
-import ru.otus.librarymicroservice.service.genre.GenreService;
 
 import java.util.List;
 import java.util.stream.Collectors;
