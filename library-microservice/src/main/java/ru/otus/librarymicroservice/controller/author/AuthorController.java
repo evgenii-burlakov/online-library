@@ -17,7 +17,7 @@ public class AuthorController {
     private final AuthorService authorService;
 
     @GetMapping("/api/authors")
-    public List<AuthorDto> getAllAuthors(@RequestHeader("User") String user) {
+    public List<AuthorDto> getAllAuthors() {
         return authorService.getAll().stream()
                 .map(AuthorDto::toDto)
                 .collect(Collectors.toList());
