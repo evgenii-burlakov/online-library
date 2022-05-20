@@ -27,19 +27,20 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        http
+        return http
                 .csrf().disable()
-
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/actuator/*")
-                        .permitAll()
+                        .pathMatchers("/actuator/*").permitAll()
+                        .pathMatchers("/login").permitAll()
                         .pathMatchers("/api/authors/*").hasRole("ADMIN")
                         .pathMatchers("/api/genres/*").hasRole("ADMIN")
                         .pathMatchers("/api/books/delete").hasRole("ADMIN")
                         .pathMatchers("/api/comments/delete").hasRole("ADMIN")
                         .anyExchange().authenticated()
                 )
-                .formLogin();
-        return http.build();
+                .formLogin()
+                .loginPage("/login")
+                .and()
+                .build();
     }
 }
