@@ -1,10 +1,10 @@
-package ru.otus.librarymicroservice.dto;
+package ru.otus.commentmicroservice.dto;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import ru.otus.librarymicroservice.domain.Comment;
+import ru.otus.commentmicroservice.domain.Comment;
 
 @Builder
 @Getter
@@ -14,7 +14,8 @@ public class CommentDto {
     private Long id;
 
     private String comment;
-    private BookDto book;
+    private Long bookId;
+    private Long userId;
 
     public CommentDto() {
     }

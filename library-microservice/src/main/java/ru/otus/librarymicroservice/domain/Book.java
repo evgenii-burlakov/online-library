@@ -11,8 +11,8 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "comments")
-@ToString(exclude = "comments")
+@EqualsAndHashCode()
+@ToString()
 @Entity
 @Table(name = "BOOKS")
 public class Book {
@@ -31,10 +31,10 @@ public class Book {
     @JoinColumn(name = "GENRE_ID", nullable = false)
     private Genre genre;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, orphanRemoval = true)
-    @BatchSize(size = 15)
-    private List<Comment> comments;
+//    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY, orphanRemoval = true)
+//    @BatchSize(size = 15)
+//    private List<Comment> comments;
 
     public Book(Long id, String name, Author author, Genre genre) {
         this.id = id;

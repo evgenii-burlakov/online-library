@@ -1,11 +1,12 @@
-package ru.otus.librarymicroservice.service.comment;
+package ru.otus.commentmicroservice.service.comment;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.otus.commentmicroservice.domain.Comment;
+import ru.otus.commentmicroservice.repositories.CommentRepository;
+import ru.otus.commentmicroservice.service.string.StringService;
 import ru.otus.librarymicroservice.domain.Book;
-import ru.otus.librarymicroservice.domain.Comment;
-import ru.otus.librarymicroservice.repositories.comment.CommentRepository;
 import ru.otus.librarymicroservice.service.book.BookService;
 import ru.otus.librarymicroservice.service.string.StringService;
 import ru.otus.librarymicroservice.util.exeption.ApplicationException;
@@ -16,7 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
-    private final BookService bookService;
     private final StringService stringService;
 
     @Override

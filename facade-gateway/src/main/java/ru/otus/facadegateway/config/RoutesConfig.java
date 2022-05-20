@@ -17,13 +17,16 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 
 @Configuration
 public class RoutesConfig {
-    private static final String LIBRARY_APPLICATION = "LIBRARY-MICROSERVICE";
+    private static final String LIBRARY_SERVICE = "LIBRARY-MICROSERVICE";
+    private static final String USER_SERVICE = "USER-MICROSERVICE";
 
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder, UserHeaderFilter userFilter) {
         return builder.routes()
-                .route(r -> r.path("/api/**")
-                        .uri("lb://" + LIBRARY_APPLICATION))
+                .route(r -> r.path("/api/users/**").uri("lb://" + USER_SERVICE))
+                .route(r -> r.path("/api/books/**").uri("lb://" + LIBRARY_SERVICE))
+                .route(r -> r.path("/api/authors/**").uri("lb://" + LIBRARY_SERVICE))
+                .route(r -> r.path("/api/genres/**").uri("lb://" + LIBRARY_SERVICE))
                 .build();
     }
 

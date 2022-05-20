@@ -1,12 +1,13 @@
-package ru.otus.librarymicroservice.controller.comment;
+package ru.otus.commentmicroservice.controllers;
 
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.otus.librarymicroservice.domain.Comment;
-import ru.otus.librarymicroservice.dto.CommentDto;
+import ru.otus.commentmicroservice.domain.Comment;
+import ru.otus.commentmicroservice.dto.CommentDto;
+import ru.otus.commentmicroservice.service.comment.CommentService;
 import ru.otus.librarymicroservice.service.comment.CommentService;
 
 import java.util.List;

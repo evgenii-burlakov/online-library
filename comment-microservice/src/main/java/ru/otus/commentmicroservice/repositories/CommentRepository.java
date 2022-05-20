@@ -1,14 +1,13 @@
-package ru.otus.librarymicroservice.repositories.comment;
+package ru.otus.commentmicroservice.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.otus.librarymicroservice.domain.Book;
-import ru.otus.librarymicroservice.domain.Comment;
+import ru.otus.commentmicroservice.domain.Comment;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    List<Comment> getAllByBook(Book book);
+    List<Comment> getAllByBookId(Long bookId);
 
     void deleteById(long id);
 

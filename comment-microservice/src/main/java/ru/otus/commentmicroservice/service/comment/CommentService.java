@@ -1,6 +1,6 @@
-package ru.otus.librarymicroservice.service.comment;
+package ru.otus.commentmicroservice.service.comment;
 
-import ru.otus.librarymicroservice.domain.Comment;
+import ru.otus.commentmicroservice.domain.Comment;
 
 import java.util.List;
 

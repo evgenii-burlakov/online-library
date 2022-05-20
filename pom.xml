@@ -16,5 +16,6 @@
         <module>facade-gateway</module>
         <module>library-microservice</module>
         <module>user-microservice</module>
+        <module>comment-microservice</module>
     </modules>
 </project>

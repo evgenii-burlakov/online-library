@@ -34,6 +34,9 @@ public class SecurityConfiguration {
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/actuator/*").permitAll()
                         .pathMatchers("/login").permitAll()
+                        .pathMatchers(HttpMethod.POST, "/api/users").permitAll()
+                        .pathMatchers("/api/users/*").hasRole("ADMIN")
+                        .pathMatchers("/createUser.html").permitAll()
                         .pathMatchers("/api/authors/*").hasRole("ADMIN")
                         .pathMatchers("/api/genres/*").hasRole("ADMIN")
                         .pathMatchers("/api/books/delete").hasRole("ADMIN")

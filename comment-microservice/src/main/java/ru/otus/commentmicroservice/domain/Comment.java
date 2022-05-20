@@ -1,4 +1,4 @@
-package ru.otus.librarymicroservice.domain;
+package ru.otus.commentmicroservice.domain;
 
 import lombok.*;
 
@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = "book")
-@ToString(exclude = "book")
+@EqualsAndHashCode()
+@ToString()
 @Entity
 @Table(name = "COMMENTS")
 public class Comment {
@@ -19,7 +19,9 @@ public class Comment {
     @Column(name = "COMMENT", nullable = false)
     private String comment;
 
-    @ManyToOne
-    @JoinColumn(name = "BOOK_ID")
-    private Book book;
+    @Column(name = "BOOK_ID", nullable = false)
+    private Long bookId;
+
+    @Column(name = "USER_ID", nullable = false)
+    private Long userId;
 }
