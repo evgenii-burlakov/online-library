@@ -39,11 +39,10 @@ class UserControllerTest {
     @Test
     @DisplayName("корректно возвращать пользователя по имени")
     void getUserByName() throws Exception {
-        given(userService.getByUserName("test")).willReturn(Optional.of(new User(1L, "TEST", "TEST", new ArrayList<>())));
+        given(userService.getByUserName("test")).willReturn(Optional.of(new User("TEST", "TEST", new ArrayList<>())));
 
         mvc.perform(get("/api/users/test"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(1)))
                 .andExpect(jsonPath("username", is("TEST")))
                 .andExpect(jsonPath("password", is("TEST")))
                 .andExpect(jsonPath("roles", hasSize(0)));

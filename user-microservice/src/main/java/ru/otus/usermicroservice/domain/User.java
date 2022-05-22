@@ -14,10 +14,7 @@ import java.util.List;
 @Table(name = "USERS")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "USERNAME", nullable = false, unique = true)
+    @Column(name = "USERNAME")
     private String username;
 
     @Column(name = "PASSWORD", nullable = false, unique = true)
@@ -27,8 +24,7 @@ public class User {
             fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Role> roles;
 
-    public User(Long id, String username, String password) {
-        this.id = id;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }

@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @EqualsAndHashCode
 public class UserDto {
 
-    private Long id;
     private String username;
     private String password;
     private List<RoleDto> roles;
@@ -23,8 +22,7 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(Long id, String username, String password, List<RoleDto> roles) {
-        this.id = id;
+    public UserDto(String username, String password, List<RoleDto> roles) {
         this.username = username;
         this.password = password;
         this.roles = roles;
@@ -32,7 +30,6 @@ public class UserDto {
 
     public static UserDto toDto(User user) {
         return UserDto.builder()
-                .id(user.getId())
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .roles(user.getRoles().stream()

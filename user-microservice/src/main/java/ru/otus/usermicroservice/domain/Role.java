@@ -10,16 +10,15 @@ import javax.persistence.*;
 @EqualsAndHashCode(exclude = "user")
 @ToString(exclude = "user")
 @Entity
+@IdClass(RoleId.class)
 @Table(name = "ROLES")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "ROLE", nullable = false, unique = true)
+    @Column(name = "ROLE")
     private String role;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USERNAME")
     private User user;
 }

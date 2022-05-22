@@ -38,9 +38,9 @@ class UserServiceImplTest {
     @Test
     @DisplayName("корректно возвращать пользователя по имени")
     void shouldCorrectGetUserByName() {
-        Mockito.when(userRepository.findByUsername("PUSHKIN")).thenReturn(Optional.of(new User(1L, "PUSHKIN", "PASSWORD")));
+        Mockito.when(userRepository.findByUsername("PUSHKIN")).thenReturn(Optional.of(new User("PUSHKIN", "PASSWORD")));
         Optional<User> actualUser = userService.getByUserName("PUSHKIN");
-        assertThat(actualUser).isEqualTo(Optional.of(new User(1L, "PUSHKIN", "PASSWORD")));
+        assertThat(actualUser).isEqualTo(Optional.of(new User("PUSHKIN", "PASSWORD")));
     }
 
     @Test
@@ -53,8 +53,8 @@ class UserServiceImplTest {
 
         Mockito.when(userRepository.findByUsername("LERMONTOV")).thenReturn(Optional.empty());
         userService.createWithUserRole("lermontov", "password");
-        Mockito.verify(userRepository, Mockito.times(1)).save(new User(null, "LERMONTOV", "PASSWORD"));
-        Mockito.verify(roleRepository, Mockito.times(1)).save(new Role(null, "USER", userRepository.save(new User(null, "LERMONTOV", "PASSWORD"))));
+        Mockito.verify(userRepository, Mockito.times(1)).save(new User("LERMONTOV", "PASSWORD"));
+        Mockito.verify(roleRepository, Mockito.times(1)).save(new Role("USER", userRepository.save(new User("LERMONTOV", "PASSWORD"))));
     }
 
     @Test
@@ -76,7 +76,7 @@ class UserServiceImplTest {
 
         Mockito.when(stringService.verifyNotBlank("LERMONTOV", "PASSWORD")).thenReturn(true);
 
-        Mockito.when(userRepository.findByUsername("LERMONTOV")).thenReturn(Optional.of(new User(1L, "LERMONTOV", "PASSWORD1")));
+        Mockito.when(userRepository.findByUsername("LERMONTOV")).thenReturn(Optional.of(new User("LERMONTOV", "PASSWORD1")));
 
         assertThatThrownBy(() -> userService.createWithUserRole("lermontov", "password")).isInstanceOf(ApplicationException.class);
     }

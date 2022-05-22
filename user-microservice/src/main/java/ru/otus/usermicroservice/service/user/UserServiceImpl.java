@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService {
         } else if (userRepository.findByUsername(userName).isPresent()) {
             throw new ApplicationException("User name already exist");
         } else {
-            User newUser = userRepository.save(new User(null, userName, userPassword));
-            roleRepository.save(new Role(null, "USER", newUser));
+            User newUser = userRepository.save(new User(userName, userPassword));
+            roleRepository.save(new Role("USER", newUser));
             return newUser;
         }
     }

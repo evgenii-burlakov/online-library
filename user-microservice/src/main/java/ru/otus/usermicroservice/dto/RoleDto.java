@@ -11,21 +11,17 @@ import ru.otus.usermicroservice.domain.Role;
 @Setter
 @EqualsAndHashCode
 public class RoleDto {
-    private Long id;
-
     private String role;
 
     public RoleDto() {
     }
 
-    public RoleDto(Long id, String role) {
-        this.id = id;
+    public RoleDto(String role) {
         this.role = role;
     }
 
     public static RoleDto toDto(Role role) {
         return RoleDto.builder()
-                .id(role.getId())
                 .role(role.getRole())
                 .build();
     }
