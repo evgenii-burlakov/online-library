@@ -35,6 +35,9 @@
         var id = getUrlVars()["id"];
         $.get('/api/comments/' + id).done(function (comment) {
             document.getElementById("comment-name-input").value = comment.comment;
+            $.get('/api/books/' + id).done(function (book) {
+                $('#book-name').append(book.name);
+            })
 <!--            $('#book-name').append(comment.book.name);-->
             document.getElementById("book-id").value = comment.bookId;
         })

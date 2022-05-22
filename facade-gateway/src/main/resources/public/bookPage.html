@@ -114,6 +114,7 @@
         $.get('/api/comments?bookId=' + bookId).done(function (comments) {
             if (comments.length != 0) {
                 $('#comment-head').append(`
+                    <th>User Name</th>
                     <th>Name</th>
                     <th></th>
                     <th></th>
@@ -123,6 +124,7 @@
             comments.forEach(function (comment) {
                 $('#comment-body').append(`
                     <tr>
+                        <td>${comment.username}</td>
                         <td>${comment.comment}</td>
                         <td>
                             <button onclick="makeEditRequest(${comment.id})">
