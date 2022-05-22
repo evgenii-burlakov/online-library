@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional
-    public void deleteById(String username, long id) {
+    public void deleteById(String username, Long id) {
         commentRepository.findById(id)
                 .filter(c -> c.getUsername().equals(username))
                 .ifPresentOrElse(c -> commentRepository.deleteById(id),
@@ -38,21 +38,24 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional
-    public void deleteAllByBookId(long bookId) {
+    public void deleteAllByBookId(Long bookId) {
         commentRepository.deleteByBookId(bookId);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Comment getById(String username, Long id) {
-        return commentRepository.findById(id)
-                .filter(c -> c.getUsername().equals(username))
+        Comment comment = commentRepository.findById(id)
                 .orElseThrow(() -> new ApplicationException("Only the user who created it can get a comment"));
+        if (!comment.getUsername().equals(username)) {
+            throw new ApplicationException("Only the user who created it can get a comment");
+        }
+        return comment;
     }
 
     @Override
     @Transactional
-    public void update(String username, long id, String stringComment) {
+    public void update(String username, Long id, String stringComment) {
         if (stringService.verifyNotBlank(stringComment)) {
             commentRepository.findById(id).ifPresentOrElse(comment -> {
                 if (!comment.getUsername().equals(username)) {

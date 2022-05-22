@@ -9,11 +9,11 @@ public interface CommentService {
 
     Comment getById(String username, Long id);
 
-    void deleteById(String username, long id);
+    void deleteById(String username, Long id);
 
-    void deleteAllByBookId(long bookId);
+    void deleteAllByBookId(Long bookId);
 
-    void update(String username, long id, String stringComment);
+    void update(String username, Long id, String stringComment);
 
     Comment create(String username, String comment, Long bookId);
 }
