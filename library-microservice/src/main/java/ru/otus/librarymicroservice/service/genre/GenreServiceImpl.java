@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.librarymicroservice.domain.Genre;
+import ru.otus.librarymicroservice.repositories.book.BookRepository;
 import ru.otus.librarymicroservice.repositories.genre.GenreRepository;
+import ru.otus.librarymicroservice.service.CommentService.CommentService;
+import ru.otus.librarymicroservice.service.book.BookService;
 import ru.otus.librarymicroservice.service.string.StringService;
 import ru.otus.librarymicroservice.util.exeption.ApplicationException;
 
@@ -14,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GenreServiceImpl implements GenreService {
     private final GenreRepository genreRepository;
+    private final CommentService commentService;
     private final StringService stringService;
 
     @Override
@@ -37,6 +41,7 @@ public class GenreServiceImpl implements GenreService {
     @Override
     @Transactional
     public void deleteById(long id) {
+        commentService.deleteAllCommentByGenre(id);
         genreRepository.deleteById(id);
     }
 

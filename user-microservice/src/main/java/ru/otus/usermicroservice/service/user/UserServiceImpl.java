@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.usermicroservice.domain.Role;
 import ru.otus.usermicroservice.domain.User;
-import ru.otus.usermicroservice.exeption.ApplicationException;
+import ru.otus.usermicroservice.exception.ApplicationException;
 import ru.otus.usermicroservice.repository.RoleRepository;
 import ru.otus.usermicroservice.repository.UserRepository;
 import ru.otus.usermicroservice.service.string.StringService;

@@ -19,11 +19,13 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 public class RoutesConfig {
     private static final String LIBRARY_SERVICE = "LIBRARY-MICROSERVICE";
     private static final String USER_SERVICE = "USER-MICROSERVICE";
+    private static final String COMMENT_SERVICE = "COMMENT-MICROSERVICE";
 
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder, UserHeaderFilter userFilter) {
         return builder.routes()
                 .route(r -> r.path("/api/users/**").uri("lb://" + USER_SERVICE))
+                .route(r -> r.path("/api/comments/**").uri("lb://" + COMMENT_SERVICE))
                 .route(r -> r.path("/api/books/**").uri("lb://" + LIBRARY_SERVICE))
                 .route(r -> r.path("/api/authors/**").uri("lb://" + LIBRARY_SERVICE))
                 .route(r -> r.path("/api/genres/**").uri("lb://" + LIBRARY_SERVICE))

@@ -8,8 +8,6 @@ import lombok.*;
 @EqualsAndHashCode(exclude = "user")
 @ToString(exclude = "user")
 public class Role {
-    private Long id;
-
     private String role;
 
     private User user;

@@ -1,4 +1,4 @@
-package ru.otus.usermicroservice.exeption;
+package ru.otus.usermicroservice.exception;
 
 public class ApplicationException extends RuntimeException {
     public ApplicationException(String message) {

@@ -15,26 +15,28 @@ public class CommentDto {
 
     private String comment;
     private Long bookId;
-    private Long userId;
+    private String username;
 
     public CommentDto() {
     }
 
-    public CommentDto(Long id, String comment, BookDto book) {
+    public CommentDto(Long id, String comment, Long bookId, String username) {
         this.id = id;
         this.comment = comment;
-        this.book = book;
+        this.bookId = bookId;
+        this.username = username;
     }
 
     public static CommentDto toDto(Comment comment) {
         return CommentDto.builder()
                 .id(comment.getId())
                 .comment(comment.getComment())
-                .book(BookDto.toDto(comment.getBook()))
+                .bookId(comment.getBookId())
+                .username(comment.getUsername())
                 .build();
     }
 
     public Comment toBean() {
-        return new Comment(id, comment, book.toBean());
+        return new Comment(id, comment, bookId, username);
     }
 }

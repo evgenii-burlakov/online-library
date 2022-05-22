@@ -15,7 +15,7 @@
 
     <div class="row">
         <label for="comment-name-input">Comment:</label>
-        <input id="comment-name-input" name="comment" type="text" value="Beautiful"/>
+        <input id="comment-name-input" name="comment" type="text" value="ITS NOT YOUR COMMENT, YOU CANT CHANGE IT"/>
     </div>
 
     <div class="row">
@@ -26,7 +26,7 @@
 
     <div class="row">
         <button type="submit">Save</button>
-        <button id= "cancel" type="button">Cancel </button>
+        <button onclick="window.history.back()" type="button">Cancel</button>
     </div>
 </form>
 
@@ -35,8 +35,8 @@
         var id = getUrlVars()["id"];
         $.get('/api/comments/' + id).done(function (comment) {
             document.getElementById("comment-name-input").value = comment.comment;
-            $('#book-name').append(comment.book.name);
-            document.getElementById("book-id").value = comment.book.id;
+<!--            $('#book-name').append(comment.book.name);-->
+            document.getElementById("book-id").value = comment.bookId;
         })
     });
 
@@ -57,20 +57,12 @@
         url: '/api/comments/' + id,
         data: { id: id,
                 comment: comment,
-                "book.id": bookId,
         },
         success: function(data) {
                 window.location = "/bookPage.html?id=" + bookId;
             }
         });
     }
-
-    $(document).ready(function() {
-        $("#cancel").click(function(){
-            var bookId = document.getElementById("book-id").value;
-            window.location = "/bookPage.html?id=" + bookId;
-        });
-    });
 </script>
 
 </body>

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.librarymicroservice.domain.Author;
 import ru.otus.librarymicroservice.repositories.author.AuthorRepository;
+import ru.otus.librarymicroservice.service.CommentService.CommentService;
 import ru.otus.librarymicroservice.service.string.StringService;
 import ru.otus.librarymicroservice.util.exeption.ApplicationException;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthorServiceImpl implements AuthorService {
     private final AuthorRepository authorRepository;
+    private final CommentService commentService;
     private final StringService stringService;
 
     @Override
@@ -37,6 +39,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     @Transactional
     public void deleteById(long id) {
+        commentService.deleteAllCommentByAuthor(id);
         authorRepository.deleteById(id);
     }
 

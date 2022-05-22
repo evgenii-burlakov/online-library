@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import ru.otus.facadegateway.domain.Role;
-import ru.otus.facadegateway.rest.UserMicroserviceClient;
+import ru.otus.facadegateway.client.UserMicroserviceClient;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
 

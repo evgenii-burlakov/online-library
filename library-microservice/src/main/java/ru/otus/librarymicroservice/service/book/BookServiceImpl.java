@@ -8,6 +8,7 @@ import ru.otus.librarymicroservice.domain.Author;
 import ru.otus.librarymicroservice.domain.Book;
 import ru.otus.librarymicroservice.domain.Genre;
 import ru.otus.librarymicroservice.repositories.book.BookRepository;
+import ru.otus.librarymicroservice.service.CommentService.CommentService;
 import ru.otus.librarymicroservice.service.author.AuthorService;
 import ru.otus.librarymicroservice.service.genre.GenreService;
 import ru.otus.librarymicroservice.service.string.StringService;
@@ -21,6 +22,7 @@ public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final AuthorService authorService;
     private final GenreService genreService;
+    private final CommentService commentService;
     private final StringService stringService;
 
     @Override
@@ -39,6 +41,7 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public void deleteById(long id) {
+        commentService.deleteAllCommentByBookId(id);
         bookRepository.deleteById(id);
     }
 

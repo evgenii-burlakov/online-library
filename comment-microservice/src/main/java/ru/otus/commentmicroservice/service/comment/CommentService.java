@@ -7,11 +7,13 @@ import java.util.List;
 public interface CommentService {
     List<Comment> getAllByBookId(Long bookId);
 
-    Comment getById(Long id);
+    Comment getById(String username, Long id);
 
-    void deleteById(long id);
+    void deleteById(String username, long id);
 
-    void update(long id, String comment, long bookId);
+    void deleteAllByBookId(long bookId);
 
-    Comment create(String comment, Long bookId);
+    void update(String username, long id, String stringComment);
+
+    Comment create(String username, String comment, Long bookId);
 }

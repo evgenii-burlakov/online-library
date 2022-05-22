@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.otus.usermicroservice.domain.Role;
 import ru.otus.usermicroservice.domain.User;
-import ru.otus.usermicroservice.exeption.ApplicationException;
+import ru.otus.usermicroservice.exception.ApplicationException;
 import ru.otus.usermicroservice.repository.RoleRepository;
 import ru.otus.usermicroservice.repository.UserRepository;
 import ru.otus.usermicroservice.service.string.StringService;

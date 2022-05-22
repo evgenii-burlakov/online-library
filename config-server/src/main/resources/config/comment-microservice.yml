@@ -1,5 +1,5 @@
 server:
-  port: 7555
+  port: 7543
 
 eureka:
   client:
@@ -29,11 +29,7 @@ management:
   security:
     enabled: false
 
-hystrix.command.getAllBooks.execution.isolation.thread.timeoutInMilliseconds: 5000
-
 logging:
-  file:
-    path: ./library-application
   level:
     ROOT: INFO
 

@@ -29,7 +29,7 @@
                type: 'POST',
                url: '/api/comments',
                data: { comment: comment,
-                   "book.id": bookId,
+                   "bookId": bookId,
                },
                success: function(data) {
                    window.location = '/bookPage.html?id=' + bookId;

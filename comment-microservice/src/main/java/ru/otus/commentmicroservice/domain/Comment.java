@@ -22,6 +22,6 @@ public class Comment {
     @Column(name = "BOOK_ID", nullable = false)
     private Long bookId;
 
-    @Column(name = "USER_ID", nullable = false)
-    private Long userId;
+    @Column(name = "USERNAME", nullable = false)
+    private String username;
 }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.otus.commentmicroservice.domain.Comment;
 import ru.otus.commentmicroservice.dto.CommentDto;
 import ru.otus.commentmicroservice.service.comment.CommentService;
-import ru.otus.librarymicroservice.service.comment.CommentService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,8 +18,8 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping("/api/comments/{id}")
-    public CommentDto getCommentById(@PathVariable("id") Long id) {
-        return CommentDto.toDto(commentService.getById(id));
+    public CommentDto getCommentById(@RequestHeader("user") String username, @PathVariable("id") Long id) {
+        return CommentDto.toDto(commentService.getById(username, id));
     }
 
     @GetMapping("/api/comments")
@@ -31,20 +30,26 @@ public class CommentController {
     }
 
     @PostMapping("/api/comments")
-    public ResponseEntity<Comment> createComment(CommentDto comment) {
-        commentService.create(comment.getComment(), comment.getBook().getId());
+    public ResponseEntity<Comment> createComment(@RequestHeader("user") String username, CommentDto comment) {
+        commentService.create(username, comment.getComment(), comment.getBookId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PatchMapping("/api/comments/{id}")
-    public ResponseEntity<Comment> updateComment(CommentDto comment) {
-        commentService.update(comment.getId(), comment.getComment(), comment.getBook().getId());
+    public ResponseEntity<Comment> updateComment(@RequestHeader("user") String username, CommentDto comment) {
+        commentService.update(username, comment.getId(), comment.getComment());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/api/comments/{id}")
-    public ResponseEntity<Comment> deleteComment(@PathVariable("id") Long id) {
-        commentService.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<Comment> deleteComment(@RequestHeader("user") String username, @PathVariable("id") Long id) {
+        commentService.deleteById(username, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/api/comments/{bookId}")
+    public ResponseEntity<Comment> deleteAllCommentByBookId(@PathVariable("bookId") Long bookId) {
+        commentService.deleteAllByBookId(bookId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

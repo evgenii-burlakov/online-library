@@ -9,10 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class User {
-
-    private Long id;
 
     private String username;
 
@@ -20,8 +17,7 @@ public class User {
 
     private List<Role> roles;
 
-    public User(Long id, String username, String password) {
-        this.id = id;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }

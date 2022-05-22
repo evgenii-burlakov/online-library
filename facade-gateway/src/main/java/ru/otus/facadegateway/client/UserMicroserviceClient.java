@@ -1,4 +1,4 @@
-package ru.otus.facadegateway.rest;
+package ru.otus.facadegateway.client;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
