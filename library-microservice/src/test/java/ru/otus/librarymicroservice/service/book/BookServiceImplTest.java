@@ -6,10 +6,10 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ActiveProfiles;
 import ru.otus.librarymicroservice.domain.Author;
 import ru.otus.librarymicroservice.domain.Book;
 import ru.otus.librarymicroservice.repositories.book.BookRepository;
+import ru.otus.librarymicroservice.service.comment.CommentService;
 import ru.otus.librarymicroservice.service.author.AuthorService;
 import ru.otus.librarymicroservice.service.genre.GenreService;
 import ru.otus.librarymicroservice.service.string.StringService;
@@ -30,6 +30,9 @@ class BookServiceImplTest {
 
     @MockBean
     private StringService stringService;
+
+    @MockBean
+    private CommentService commentService;
 
     @MockBean
     private AuthorService authorService;
@@ -62,6 +65,7 @@ class BookServiceImplTest {
     void shouldCorrectDeleteBookAndUnusedAuthorAndGenreById() {
         bookService.deleteById(1);
         Mockito.verify(bookRepository, Mockito.times(1)).deleteById(1);
+        Mockito.verify(commentService, Mockito.times(1)).deleteAllCommentByBookId(1L);
     }
 
     @Test

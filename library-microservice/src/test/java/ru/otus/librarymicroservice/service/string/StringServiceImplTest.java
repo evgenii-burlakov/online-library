@@ -8,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.otus.librarymicroservice.repositories.author.AuthorRepository;
 import ru.otus.librarymicroservice.repositories.book.BookRepository;
 import ru.otus.librarymicroservice.repositories.genre.GenreRepository;
+import ru.otus.librarymicroservice.service.comment.CommentService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,6 +17,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 class StringServiceImplTest {
     @Autowired
     private StringService stringService;
+
+    @MockBean
+    private CommentService commentService;
 
     @MockBean
     private AuthorRepository authorRepository;

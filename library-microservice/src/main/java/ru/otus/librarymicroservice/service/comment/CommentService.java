@@ -1,4 +1,4 @@
-package ru.otus.librarymicroservice.service.CommentService;
+package ru.otus.librarymicroservice.service.comment;
 
 public interface CommentService {
 

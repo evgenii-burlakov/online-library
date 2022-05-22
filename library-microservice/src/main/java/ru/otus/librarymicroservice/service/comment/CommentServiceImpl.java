@@ -1,4 +1,4 @@
-package ru.otus.librarymicroservice.service.CommentService;
+package ru.otus.librarymicroservice.service.comment;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

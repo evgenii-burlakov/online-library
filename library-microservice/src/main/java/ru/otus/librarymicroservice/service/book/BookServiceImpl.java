@@ -8,7 +8,7 @@ import ru.otus.librarymicroservice.domain.Author;
 import ru.otus.librarymicroservice.domain.Book;
 import ru.otus.librarymicroservice.domain.Genre;
 import ru.otus.librarymicroservice.repositories.book.BookRepository;
-import ru.otus.librarymicroservice.service.CommentService.CommentService;
+import ru.otus.librarymicroservice.service.comment.CommentService;
 import ru.otus.librarymicroservice.service.author.AuthorService;
 import ru.otus.librarymicroservice.service.genre.GenreService;
 import ru.otus.librarymicroservice.service.string.StringService;

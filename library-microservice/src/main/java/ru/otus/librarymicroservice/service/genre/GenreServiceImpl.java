@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.librarymicroservice.domain.Genre;
-import ru.otus.librarymicroservice.repositories.book.BookRepository;
 import ru.otus.librarymicroservice.repositories.genre.GenreRepository;
-import ru.otus.librarymicroservice.service.CommentService.CommentService;
-import ru.otus.librarymicroservice.service.book.BookService;
+import ru.otus.librarymicroservice.service.comment.CommentService;
 import ru.otus.librarymicroservice.service.string.StringService;
 import ru.otus.librarymicroservice.util.exeption.ApplicationException;
 

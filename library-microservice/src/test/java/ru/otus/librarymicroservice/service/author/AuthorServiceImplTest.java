@@ -10,6 +10,7 @@ import ru.otus.librarymicroservice.domain.Author;
 import ru.otus.librarymicroservice.repositories.author.AuthorRepository;
 import ru.otus.librarymicroservice.repositories.book.BookRepository;
 import ru.otus.librarymicroservice.repositories.genre.GenreRepository;
+import ru.otus.librarymicroservice.service.comment.CommentService;
 import ru.otus.librarymicroservice.service.string.StringService;
 import ru.otus.librarymicroservice.util.exeption.ApplicationException;
 
@@ -31,6 +32,8 @@ class AuthorServiceImplTest {
     @MockBean
     private StringService stringService;
 
+    @MockBean
+    private CommentService commentService;
     @MockBean
     private AuthorRepository authorRepository;
 
@@ -70,6 +73,7 @@ class AuthorServiceImplTest {
     void shouldCorrectDeleteAuthorAndUnusedGenresById() {
         authorService.deleteById(2);
         Mockito.verify(authorRepository, Mockito.times(1)).deleteById(2);
+        Mockito.verify(commentService, Mockito.times(1)).deleteAllCommentByAuthor(2L);
     }
 
     @Test
