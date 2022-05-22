@@ -18,11 +18,11 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void deleteAllCommentByGenre(Long genreId) {
-        bookRepository.findAllByGenre(genreId).forEach(b -> commentMicroserviceClient.deleteAllCommentByBookId(b.getId()));
+        bookRepository.findAllByGenreId(genreId).forEach(b -> commentMicroserviceClient.deleteAllCommentByBookId(b.getId()));
     }
 
     @Override
     public void deleteAllCommentByAuthor(Long authorId) {
-        bookRepository.findAllByAuthor(authorId).forEach(b -> commentMicroserviceClient.deleteAllCommentByBookId(b.getId()));
+        bookRepository.findAllByAuthorId(authorId).forEach(b -> commentMicroserviceClient.deleteAllCommentByBookId(b.getId()));
     }
 }

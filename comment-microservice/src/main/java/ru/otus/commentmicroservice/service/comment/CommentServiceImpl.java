@@ -37,11 +37,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    @Transactional
     public void deleteAllByBookId(long bookId) {
         commentRepository.deleteByBookId(bookId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Comment getById(String username, Long id) {
         return commentRepository.findById(id)
                 .filter(c -> c.getUsername().equals(username))
