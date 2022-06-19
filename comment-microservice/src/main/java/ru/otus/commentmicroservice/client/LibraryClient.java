@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import ru.otus.commentmicroservice.domain.Book;
 
 @FeignClient(name = "library-microservice")
-public interface LibraryMicroserviceClient {
+public interface LibraryClient {
 
     @GetMapping("/api/books/{id}")
     Book getBookById(@PathVariable("id") Long id);

@@ -47,7 +47,7 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/api/comments/deleteAllByBookId/{bookId}")
+    @DeleteMapping("/api/comments/books/{bookId}")
     public ResponseEntity<Comment> deleteAllCommentByBookId(@PathVariable("bookId") Long bookId) {
         commentService.deleteAllByBookId(bookId);
         return new ResponseEntity<>(HttpStatus.OK);

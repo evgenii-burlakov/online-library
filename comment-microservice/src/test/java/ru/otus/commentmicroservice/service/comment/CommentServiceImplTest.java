@@ -6,7 +6,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import ru.otus.commentmicroservice.client.LibraryMicroserviceClient;
+import ru.otus.commentmicroservice.client.LibraryClient;
 import ru.otus.commentmicroservice.domain.Comment;
 import ru.otus.commentmicroservice.exception.ApplicationException;
 import ru.otus.commentmicroservice.repositories.CommentRepository;
@@ -30,7 +30,7 @@ class CommentServiceImplTest {
     private StringService stringService;
 
     @MockBean
-    private LibraryMicroserviceClient libraryMicroserviceClient;
+    private LibraryClient libraryClient;
 
     @MockBean
     private CommentRepository commentRepository;
@@ -130,7 +130,7 @@ class CommentServiceImplTest {
     @DisplayName("корректно создавать комментарий")
     void shouldCorrectCreateComment() {
         Mockito.when(stringService.verifyNotBlank("Это что за книга?")).thenReturn(true);
-        Mockito.when(libraryMicroserviceClient.getBookById(1L)).thenReturn(BOOK1);
+        Mockito.when(libraryClient.getBookById(1L)).thenReturn(BOOK1);
 
         commentService.create("USER", "Это что за книга?", 1L);
 
@@ -151,7 +151,7 @@ class CommentServiceImplTest {
     @DisplayName("не создавать комментарий при отсутствии книги")
     void shouldNotCreateCommentNotExistBook() {
         Mockito.when(stringService.verifyNotBlank("Это что за книга?")).thenReturn(true);
-        Mockito.when(libraryMicroserviceClient.getBookById(1L)).thenReturn(null);
+        Mockito.when(libraryClient.getBookById(1L)).thenReturn(null);
 
         assertThatThrownBy(() -> commentService.create("USER", "Это что за книга?", 1L)).isInstanceOf(ApplicationException.class);
 

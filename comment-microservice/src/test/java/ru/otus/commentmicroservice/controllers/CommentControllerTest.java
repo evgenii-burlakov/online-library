@@ -96,7 +96,7 @@ class CommentControllerTest {
     @Test
     @DisplayName("корректно удалять все комментарий по ИД книги")
     void correctDeleteAllCommentByBookId() throws Exception {
-        mvc.perform(delete("/api/comments/deleteAllByBookId/1"))
+        mvc.perform(delete("/api/comments/books/1"))
                 .andExpect(status().isOk());
 
         Mockito.verify(commentService, times(1)).deleteAllByBookId(1L);

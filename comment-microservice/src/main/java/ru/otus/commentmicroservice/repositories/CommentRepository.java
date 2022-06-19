@@ -9,11 +9,5 @@ import java.util.Optional;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> getAllByBookId(Long bookId);
 
-    void deleteById(Long id);
-
     void deleteByBookId(Long bookId);
-
-    Comment save(Comment comment);
-
-    Optional<Comment> findById(Long id);
 }

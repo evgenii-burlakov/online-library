@@ -1,5 +1,6 @@
 package ru.otus.facadegateway.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,10 +14,11 @@ import static org.springframework.security.core.userdetails.User.withUsername;
 
 
 @Service
+@RequiredArgsConstructor
 public class UserDetailsSecurityService {
 
     @Autowired
-    private  UserMicroserviceClient userMicroserviceClient;
+    private final UserMicroserviceClient userMicroserviceClient;
 
     public Mono<UserDetails> loadUserByUsername(String username) {
         return userMicroserviceClient.getUserByUsername(username)

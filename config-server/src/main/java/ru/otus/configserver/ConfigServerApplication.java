@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Profile;
 
 @EnableConfigServer
 @SpringBootApplication
-@Profile("native")
 public class ConfigServerApplication {
 
 	public static void main(String[] args) {

@@ -3,7 +3,7 @@ package ru.otus.commentmicroservice.service.comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.otus.commentmicroservice.client.LibraryMicroserviceClient;
+import ru.otus.commentmicroservice.client.LibraryClient;
 import ru.otus.commentmicroservice.domain.Book;
 import ru.otus.commentmicroservice.domain.Comment;
 import ru.otus.commentmicroservice.exception.ApplicationException;
@@ -17,7 +17,7 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final StringService stringService;
-    private final LibraryMicroserviceClient libraryMicroserviceClient;
+    private final LibraryClient libraryClient;
 
     @Override
     @Transactional(readOnly = true)
@@ -75,7 +75,7 @@ public class CommentServiceImpl implements CommentService {
     @Transactional
     public Comment create(String username, String comment, Long bookId) {
         if (stringService.verifyNotBlank(comment)) {
-            Book book = libraryMicroserviceClient.getBookById(bookId);
+            Book book = libraryClient.getBookById(bookId);
             if (book != null) {
                 Comment newComment = new Comment(null, comment, bookId, username);
                 return commentRepository.save(newComment);

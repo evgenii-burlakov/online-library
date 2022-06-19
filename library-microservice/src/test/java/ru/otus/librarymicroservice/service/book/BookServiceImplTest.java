@@ -55,7 +55,7 @@ class BookServiceImplTest {
     @Test
     @DisplayName("корректно возвращать книгу по ИД")
     void shouldCorrectGetBookById() {
-        Mockito.when(bookRepository.findById(1)).thenReturn(Optional.of(BOOK1));
+        Mockito.when(bookRepository.findById(1L)).thenReturn(Optional.of(BOOK1));
         Book actualBook = bookService.getById(1);
         assertThat(actualBook).isEqualTo(BOOK1);
     }
@@ -64,7 +64,7 @@ class BookServiceImplTest {
     @DisplayName("корректно удалять книгу по ИД")
     void shouldCorrectDeleteBookAndUnusedAuthorAndGenreById() {
         bookService.deleteById(1);
-        Mockito.verify(bookRepository, Mockito.times(1)).deleteById(1);
+        Mockito.verify(bookRepository, Mockito.times(1)).deleteById(1L);
         Mockito.verify(commentService, Mockito.times(1)).deleteAllCommentByBookId(1L);
     }
 
@@ -75,7 +75,7 @@ class BookServiceImplTest {
         Mockito.when(stringService.beautifyStringName("")).thenReturn("");
         Mockito.when(stringService.beautifyStringName("POEM")).thenReturn("POEM");
         Mockito.when(stringService.verifyNotBlank("EVGENII ONEGIN", "", "POEM")).thenReturn(false);
-        Mockito.when(bookRepository.findById(1)).thenReturn(Optional.of(BOOK1));
+        Mockito.when(bookRepository.findById(1L)).thenReturn(Optional.of(BOOK1));
 
         assertThatThrownBy(() -> bookService.update(1, "EVGENII ONEGIN", "", "POEM")).isInstanceOf(ApplicationException.class);
 
@@ -96,7 +96,7 @@ class BookServiceImplTest {
         Mockito.when(stringService.beautifyStringName("LERMONTOV")).thenReturn("LERMONTOV");
         Mockito.when(stringService.beautifyStringName("POEM")).thenReturn("POEM");
         Mockito.when(stringService.verifyNotBlank("EVGENII ONEGIN", "LERMONTOV", "POEM")).thenReturn(true);
-        Mockito.when(bookRepository.findById(5)).thenReturn(Optional.empty());
+        Mockito.when(bookRepository.findById(5L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> bookService.update(5, "EVGENII ONEGIN", "LERMONTOV", "POEM")).isInstanceOf(ApplicationException.class);
 
@@ -113,7 +113,7 @@ class BookServiceImplTest {
     @Test
     @DisplayName("обновлять книгу, создавать нового автора, если его не было в БД, обновлять жанр, но не создавать новый, если он уже есть в БД")
     void correctUpdateBookAndAddNewAuthorNotDeleteOldAuthorGetNewGenreDeleteOldGenre() {
-        Mockito.when(bookRepository.findById(1)).thenReturn(Optional.of(BOOK1));
+        Mockito.when(bookRepository.findById(1L)).thenReturn(Optional.of(BOOK1));
 
         Mockito.when(stringService.beautifyStringName("EVGENII ONEGIN")).thenReturn("EVGENII ONEGIN");
         Mockito.when(stringService.beautifyStringName("LERMONTOV")).thenReturn("LERMONTOV");

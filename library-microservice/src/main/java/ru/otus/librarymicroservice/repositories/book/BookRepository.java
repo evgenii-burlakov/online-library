@@ -15,15 +15,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     boolean existsBy();
 
-    Optional<Book> findById(long id);
-
     List<Book> findAllByGenreId(long genreId);
 
     List<Book> findAllByAuthorId(long authorId);
-
-    void deleteById(long id);
-
-    Book save(Book book);
 
     @Query("select count(*) > 0 from Book b " +
             "inner join Author a on b.author=a.id " +
