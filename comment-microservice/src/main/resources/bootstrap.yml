@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: comment-microservice
+  cloud:
+    config:
+      fail-fast: true
+      profile: inMemory

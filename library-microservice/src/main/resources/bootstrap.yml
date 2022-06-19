@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: library-microservice
+  cloud:
+    config:
+      fail-fast: true
+      profile: inMemory

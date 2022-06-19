@@ -1,0 +1,18 @@
+server:
+  port: 7777
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, logfile
+  endpoint:
+    health:
+      show-details: always
+  security:
+    enabled: false

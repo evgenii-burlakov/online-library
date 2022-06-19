@@ -1,0 +1,64 @@
+server:
+  port: 7555
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+spring:
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+
+  #    show-sql: true
+
+  cloud:
+    config:
+      enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, logfile
+  endpoint:
+    health:
+      show-details: always
+  security:
+    enabled: false
+
+hystrix.command.getAllBooks.execution.isolation.thread.timeoutInMilliseconds: 5000
+
+logging:
+  file:
+    path: ./library-application
+  level:
+    ROOT: INFO
+
+---
+spring:
+  profiles: inMemory
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:H2Data.sql
+      schema-locations: classpath:H2Schema.sql
+---
+spring:
+  profiles: postgres
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5431/db
+    username: postgres
+    password: postgres
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:PostgresData.sql
+      schema-locations: classpath:PostgresSchema.sql

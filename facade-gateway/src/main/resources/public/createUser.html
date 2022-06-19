@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Create new user</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<form id="create-form" action="javascript:void(null);" onsubmit="sendForm()">
+    <h3>New User:</h3>
+
+    <div class="row">
+        <label for="user-name">User name:</label>
+        <input id="user-name" name="name" type="text"/>
+    </div>
+
+    <div class="row">
+        <label for="user-password">Password:</label>
+        <input id="user-password" name="name" type="text"/>
+    </div>
+
+    <br><br>
+
+    <div class="row">
+        <button type="submit">Save</button>
+        <button onclick="window.location.href='/login'" type="button">Cancel</button>
+    </div>
+</form>
+
+<script>
+    function sendForm() {
+        var username = document.getElementById("user-name").value;
+        var password = document.getElementById("user-password").value;
+        $.ajax({
+            type: 'POST',
+            url: '/api/users',
+            data: { username: username,
+                "password": password,
+        },
+            success: function(data) {
+                window.location = "/login";
+        }
+        });
+    }
+</script>
+
+</body>
+</html>
